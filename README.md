@@ -1,10 +1,10 @@
-# PromptPulse Navigator
+# ChatGPT Message Navigator
 
-![PromptPulse Navigator logo](icons/promptpulse-logo.png)
+![ChatGPT Message Navigator logo](icons/chatgpt-message-navigator-logo.png)
 
 一个给 ChatGPT 页面用的小型 Chrome 扩展：右下角显示一个头像按钮，点开后会列出当前对话里你发出的消息预览，点击任意一条就能滚动回对应位置。
 
-中文名：脉冲导航。每一次提问都是长对话里的一个脉冲坐标，点一下就能回去。
+中文名：ChatGPT 消息导航器。长对话里不用反复上下滑，点一下就能回到你发过的消息。
 
 ## 安装
 
@@ -36,5 +36,5 @@
 - `manifest.json`: Chrome 扩展配置。
 - `content.js`: 扫描用户消息、渲染浮动面板、处理跳转。
 - `styles.css`: 浮动按钮和消息面板样式。
-- `icons/`: PromptPulse Navigator 的扩展 Logo 和 Chrome 图标尺寸。
+- `icons/`: ChatGPT Message Navigator 的扩展 Logo 和 Chrome 图标尺寸。
 - `assets/kunkun.jpg`: 页面右下角悬浮按钮头像。

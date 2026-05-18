@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "PromptPulse Navigator",
+  "name": "ChatGPT Message Navigator",
   "version": "1.0.0",
-  "description": "Turn your ChatGPT prompts into a compact pulse map and jump back to any message instantly.",
+  "description": "Show a compact list of your ChatGPT messages and jump back to any point in a long conversation.",
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
