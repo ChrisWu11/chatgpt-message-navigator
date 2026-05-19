@@ -29,13 +29,13 @@
     <section class="cgj-panel" aria-label="Your ChatGPT messages">
       <header class="cgj-header">
         <div>
-          <strong>我的消息</strong>
-          <span class="cgj-subtitle">点击跳转</span>
+          <strong>My Messages</strong>
+          <span class="cgj-subtitle">Click to jump</span>
         </div>
-        <button class="cgj-refresh" type="button" aria-label="Refresh message list">刷新</button>
+        <button class="cgj-refresh" type="button" aria-label="Refresh message list">Refresh</button>
       </header>
       <div class="cgj-list" role="list"></div>
-      <div class="cgj-empty">还没找到你发出的消息。</div>
+      <div class="cgj-empty">No messages found yet.</div>
     </section>
   `;
 
@@ -219,7 +219,7 @@
       ...Array.from(node.querySelectorAll?.(".sr-only, [class*='sr-only']") || []).map((item) => item.textContent)
     ].filter(Boolean).join(" ");
 
-    return /\b(you said|you asked|you wrote|you sent)\b|你(说|发送|发出)|您(说|发送|发出)/i.test(labelText);
+    return /\b(you said|you asked|you wrote|you sent)\b/i.test(labelText);
   }
 
   function getMessageNode(node) {
@@ -461,15 +461,15 @@
     const parts = [];
 
     if (imageCount === 1) {
-      parts.push("图片消息");
+      parts.push("Image message");
     } else if (imageCount > 1) {
-      parts.push(`${imageCount} 张图片`);
+      parts.push(`${imageCount} images`);
     }
 
     if (attachmentLabels.length === 1) {
-      parts.push(`附件：${attachmentLabels[0]}`);
+      parts.push(`Attachment: ${attachmentLabels[0]}`);
     } else if (attachmentLabels.length > 1) {
-      parts.push(`${attachmentLabels.length} 个附件`);
+      parts.push(`${attachmentLabels.length} attachments`);
     }
 
     if (!parts.length) {

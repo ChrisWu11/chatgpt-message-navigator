@@ -1,40 +1,29 @@
 # ChatGPT Message Navigator
 
-![ChatGPT Message Navigator logo](icons/chatgpt-message-navigator-logo.png)
+A lightweight Chrome extension for ChatGPT. It adds a small floating avatar button to the page, opens a compact list of the messages you sent in the current conversation, and lets you jump back to any message with one click.
 
-一个给 ChatGPT 页面用的小型 Chrome 扩展：右下角显示一个头像按钮，点开后会列出当前对话里你发出的消息预览，点击任意一条就能滚动回对应位置。
+## Installation
 
-中文名：ChatGPT 消息导航器。长对话里不用反复上下滑，点一下就能回到你发过的消息。
+1. Download or clone this repository.
+2. Open Chrome and go to `chrome://extensions/`.
+3. Enable **Developer mode**.
+4. Click **Load unpacked**.
+5. Select this project folder.
+6. Refresh your ChatGPT page.
 
-## 安装
+## Usage
 
-1. 下载或 clone 这个仓库。
-2. 打开 Chrome，进入 `chrome://extensions/`。
-3. 打开右上角的“开发者模式”。
-4. 点击“加载已解压的扩展程序”。
-5. 选择这个项目文件夹。
-6. 刷新 ChatGPT 页面。
+- Open any conversation on `https://chatgpt.com/` or `https://chat.openai.com/`.
+- Click the floating avatar button in the lower-right corner.
+- The panel shows previews of the messages you sent.
+- Image-only messages and attachments are listed as image or attachment entries.
+- Click any entry to smoothly scroll back to that message.
+- In very long conversations, ChatGPT may only render nearby messages. The extension keeps collecting messages as you scroll through the conversation.
 
-## 本地开发安装
+## Files
 
-1. 打开 Chrome，进入 `chrome://extensions/`。
-2. 打开右上角的“开发者模式”。
-3. 点击“加载已解压的扩展程序”。
-4. 选择本地项目文件夹。
-5. 刷新 ChatGPT 页面。
-
-## 使用
-
-- 打开 `https://chatgpt.com/` 或 `https://chat.openai.com/` 的任意对话。
-- 点击页面右下角的头像按钮。
-- 面板里会显示你发出的消息片段；纯图片或附件消息会显示为“图片消息”或“附件”。
-- 点击某条消息，页面会平滑滚动到那条消息的位置。
-- 长对话里，ChatGPT 可能只渲染当前附近的消息；插件会在你上下滚动时持续收集新出现过的历史消息。
-
-## 文件
-
-- `manifest.json`: Chrome 扩展配置。
-- `content.js`: 扫描用户消息、渲染浮动面板、处理跳转。
-- `styles.css`: 浮动按钮和消息面板样式。
-- `icons/`: ChatGPT Message Navigator 的扩展 Logo 和 Chrome 图标尺寸。
-- `assets/kunkun.jpg`: 页面右下角悬浮按钮头像。
+- `manifest.json`: Chrome extension configuration.
+- `content.js`: Scans user messages, renders the floating panel, and handles jump navigation.
+- `styles.css`: Styles for the floating button and message panel.
+- `icons/`: Extension logo and Chrome icon sizes.
+- `assets/kunkun.jpg`: Avatar image used by the floating button.
