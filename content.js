@@ -82,14 +82,19 @@
     queueRefresh(90);
   }, true);
 
-  setInterval(() => {
-    const nextLocationKey = getLocationKey();
-    if (state.locationKey !== nextLocationKey) {
-      state.locationKey = nextLocationKey;
-      clearEntries();
+  window.addEventListener("popstate", () => {
+    queueRefresh(80);
+  });
+
+  window.addEventListener("hashchange", () => {
+    queueRefresh(80);
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
       queueRefresh(80);
     }
-  }, 800);
+  });
 
   collectEntries();
 
@@ -100,14 +105,30 @@
 
     if (open) {
       panel.scrollTop = 0;
+      renderList();
+    } else {
+      list.replaceChildren();
     }
   }
 
   function queueRefresh(delay = 180) {
+    syncLocation();
     clearTimeout(state.refreshTimer);
     state.refreshTimer = setTimeout(() => {
       collectEntries();
     }, delay);
+  }
+
+  function syncLocation() {
+    const nextLocationKey = getLocationKey();
+
+    if (state.locationKey === nextLocationKey) {
+      return false;
+    }
+
+    state.locationKey = nextLocationKey;
+    clearEntries();
+    return true;
   }
 
   function clearEntries() {
@@ -115,10 +136,16 @@
     state.entriesByKey.clear();
     state.activeKey = null;
     countBadge.textContent = String(state.entries.length);
-    renderList();
+
+    if (state.open) {
+      renderList();
+    } else {
+      list.replaceChildren();
+    }
   }
 
   function collectEntries() {
+    syncLocation();
     const foundEntries = findUserMessageEntries();
 
     foundEntries.forEach((entry) => {
@@ -141,9 +168,25 @@
       });
     });
 
+    releaseDisconnectedReferences();
     state.entries = Array.from(state.entriesByKey.values()).sort(compareEntries);
     countBadge.textContent = String(state.entries.length);
-    renderList();
+
+    if (state.open) {
+      renderList();
+    }
+  }
+
+  function releaseDisconnectedReferences() {
+    state.entriesByKey.forEach((entry) => {
+      if (entry.element && !entry.element.isConnected) {
+        entry.element = null;
+      }
+
+      if (entry.scroller && !entry.scroller.isConnected) {
+        entry.scroller = null;
+      }
+    });
   }
 
   function findUserMessageEntries() {
